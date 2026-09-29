@@ -1,709 +1,559 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Creados con Propósito | Fiorella Fernández</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome for Icons -->
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- FontAwesome para iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts: Playfair Display & Plus Jakarta Sans -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        earth: {
-                            50: '#FBF9F5',
-                            100: '#F4EFE6',
-                            200: '#E8DEC9',
-                            300: '#D5C4A1',
-                            700: '#8A7550',
-                            800: '#665538',
-                            900: '#473A25',
-                        },
-                        sage: {
-                            50: '#F2F5F2',
-                            100: '#E1E8E1',
-                            500: '#658265',
-                            600: '#4F664F',
-                            700: '#3A4D3A',
-                        },
-                        sky: {
-                            50: '#F0F7FB',
-                            100: '#DCEBF5',
-                            500: '#5B92B8',
-                            600: '#3D7399',
-                        },
-                        sunset: {
-                            500: '#D98243',
-                            600: '#B86526',
-                        }
-                    },
-                    fontFamily: {
-                        serif: ['"Playfair Display"', 'serif'],
-                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-                    },
-                    keyframes: {
-                        fadeInUp: {
-                            '0%': { opacity: '0', transform: 'translateY(30px)' },
-                            '100%': { opacity: '1', transform: 'translateY(0)' }
-                        },
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-10px)' }
-                        },
-                        pulseGlow: {
-                            '0%, 100%': { boxShadow: '0 0 15px rgba(217, 130, 67, 0.4)' },
-                            '50%': { boxShadow: '0 0 25px rgba(217, 130, 67, 0.8)' }
-                        },
-                        ticker: {
-                            '0%': { transform: 'translateX(0)' },
-                            '100%': { transform: 'translateX(-50%)' }
-                        }
-                    },
-                    animation: {
-                        'fade-in-up': 'fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
-                        'float': 'float 4s ease-in-out infinite',
-                        'pulse-glow': 'pulseGlow 3s infinite',
-                        'ticker': 'ticker 30s linear infinite',
-                    }
-                }
-            }
-        }
-    </script>
+    
     <style>
-        .delay-100 { animation-delay: 100ms; }
-        .delay-200 { animation-delay: 200ms; }
-        .delay-300 { animation-delay: 300ms; }
-        .delay-400 { animation-delay: 400ms; }
-        
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #FBF9F5;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #D5C4A1;
-            border-radius: 5px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #8A7550;
+        :root {
+            --primary: #2d5a27;
+            --primary-light: #438a3d;
+            --accent: #d4a373;
+            --bg-sand: #fefae0;
+            --text-dark: #2b2b2b;
+            --text-light: #6c757d;
+            --white: #ffffff;
+            --shadow: 0 10px 30px rgba(0,0,0,0.08);
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(232, 222, 201, 0.5);
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
         }
 
-        .hero-gradient {
-            background: linear-gradient(135deg, rgba(71, 58, 37, 0.85) 0%, rgba(58, 77, 58, 0.75) 50%, rgba(61, 115, 153, 0.65) 100%);
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #faf9f6;
+            color: var(--text-dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .serif-font {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Animaciones de entrada */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: var(--transition);
+        }
+
+        .fade-in.appear {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Navbar */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 5%;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.2rem;
+            box-shadow: 0 4px 10px rgba(45, 90, 39, 0.3);
+        }
+
+        .logo-text h1 {
+            font-size: 1.2rem;
+            color: var(--primary);
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-text p {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        nav a:hover {
+            color: var(--primary-light);
+        }
+
+        .nav-btn {
+            background: var(--primary);
+            color: var(--white) !important;
+            padding: 0.6rem 1.4rem;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(45, 90, 39, 0.2);
+        }
+
+        .nav-btn:hover {
+            background: var(--primary-light);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 1rem;
+            color: var(--white);
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero h2 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            margin-bottom: 1rem;
+            font-weight: 700;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            margin-bottom: 2rem;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--white);
+            padding: 0.9rem 2.2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 10px 25px rgba(212, 163, 115, 0.4);
+            transition: var(--transition);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            background: #bc8a5b;
+        }
+
+        /* Secciones generales */
+        section {
+            padding: 6rem 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title p {
+            color: var(--text-light);
+            font-size: 1.05rem;
+        }
+
+        /* Tienda Digital / Recursos Imprimibles */
+        .store-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .store-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(0,0,0,0.04);
+        }
+
+        .store-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+        }
+
+        .store-img {
+            height: 220px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .store-content {
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .badge {
+            background: var(--bg-sand);
+            color: var(--primary);
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            align-self: flex-start;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .store-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+            color: var(--text-dark);
+        }
+
+        .store-content p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+        }
+
+        .price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .btn-buy {
+            background: var(--primary);
+            color: var(--white);
+            padding: 0.6rem 1.2rem;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .btn-buy:hover {
+            background: var(--primary-light);
+        }
+
+        /* Sección Interactiva del Devocional Imprimible (Muestra Día 1 y 2) */
+        .printable-preview {
+            background: var(--bg-sand);
+            border-radius: 25px;
+            padding: 3rem;
+            margin-top: 4rem;
+            box-shadow: var(--shadow);
+        }
+
+        .printable-preview h3 {
+            font-size: 2rem;
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .day-box {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            border-left: 5px solid var(--accent);
+        }
+
+        .day-box h4 {
+            color: var(--primary);
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .verse {
+            font-style: italic;
+            color: #555;
+            background: #faf8f0;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            border-left: 3px solid var(--primary);
+        }
+
+        /* Footer con Ticker en movimiento */
+        footer {
+            background: var(--primary);
+            color: var(--white);
+            padding: 3rem 0 1.5rem 0;
+            overflow: hidden;
+        }
+
+        .ticker-wrap {
+            width: 100%;
+            overflow: hidden;
+            background: rgba(0,0,0,0.15);
+            padding: 12px 0;
+            white-space: nowrap;
+            margin-bottom: 2.5rem;
+        }
+
+        .ticker {
+            display: inline-block;
+            animation: ticker 30s linear infinite;
+        }
+
+        .ticker-item {
+            display: inline-block;
+            padding: 0 2rem;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--bg-sand);
+        }
+
+        @keyframes ticker {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-50%, 0, 0); }
+        }
+
+        .footer-content {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .footer-content p {
+            margin-bottom: 1rem;
+            color: rgba(255,255,255,0.8);
+        }
+
+        /* Botón Flotante de WhatsApp */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25d366;
+            color: var(--white);
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+            z-index: 1000;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+
+        @media(max-width: 768px) {
+            nav ul { display: none; }
+            section { padding: 4rem 5%; }
         }
     </style>
 </head>
-<body class="bg-earth-50 text-earth-900 font-sans antialiased selection:bg-sunset-500 selection:text-white">
+<body>
 
-    <!-- Navigation Header -->
-    <header class="fixed top-0 left-0 right-0 z-50 glass-panel shadow-sm transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <a href="#" class="flex items-center space-x-3 group">
-                <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-sunset-500 to-sage-500 flex items-center justify-center text-white shadow-md group-hover:scale-105 transition-transform">
-                    <i class="fa-solid fa-seedling text-lg"></i>
-                </div>
-                <div>
-                    <span class="font-serif font-bold text-xl sm:text-2xl tracking-wide text-earth-900 block leading-tight">Creados con Propósito</span>
-                    <span class="text-xs font-medium text-sage-600 tracking-widest uppercase">Por Fiorella Fernández</span>
-                </div>
-            </a>
-
-            <!-- Desktop Nav Links -->
-            <nav class="hidden md:flex items-center space-x-8 font-medium text-sm text-earth-800">
-                <a href="#inicio" class="hover:text-sunset-600 transition-colors">Inicio</a>
-                <a href="#sobre-mi" class="hover:text-sunset-600 transition-colors">Sobre Mí</a>
-                <a href="#devocionales" class="hover:text-sunset-600 transition-colors">Devocionales</a>
-                <a href="#testimonios" class="hover:text-sunset-600 transition-colors">Testimonios</a>
-                <a href="#tienda" class="hover:text-sunset-600 transition-colors">Tienda Digital</a>
-                <a href="#contacto" class="bg-earth-900 text-white px-5 py-2.5 rounded-full shadow hover:bg-sunset-600 transition-all duration-300 transform hover:-translate-y-0.5">Contacto</a>
-            </nav>
-
-            <!-- Mobile Menu Button -->
-            <button id="mobile-menu-btn" class="md:hidden text-earth-900 focus:outline-none p-2">
-                <i class="fa-solid fa-bars text-2xl"></i>
-            </button>
+    <!-- Header -->
+    <header>
+        <div class="logo-container">
+            <div class="logo-icon"><i class="fa-solid fa-seedling"></i></div>
+            <div class="logo-text">
+                <h1>Creados con Propósito</h1>
+                <p>Por Fiorella Fernández</p>
+            </div>
         </div>
-
-        <!-- Mobile Menu Drawer -->
-        <div id="mobile-menu" class="hidden md:hidden glass-panel border-t border-earth-200 px-6 py-6 space-y-4 shadow-xl">
-            <a href="#inicio" class="block font-medium text-earth-800 hover:text-sunset-600 transition-colors">Inicio</a>
-            <a href="#sobre-mi" class="block font-medium text-earth-800 hover:text-sunset-600 transition-colors">Sobre Mí</a>
-            <a href="#devocionales" class="block font-medium text-earth-800 hover:text-sunset-600 transition-colors">Devocionales</a>
-            <a href="#testimonios" class="block font-medium text-earth-800 hover:text-sunset-600 transition-colors">Testimonios</a>
-            <a href="#tienda" class="block font-medium text-earth-800 hover:text-sunset-600 transition-colors">Tienda Digital</a>
-            <a href="#contacto" class="block text-center bg-earth-900 text-white py-3 rounded-xl font-medium shadow hover:bg-sunset-600 transition-colors">Contacto</a>
-        </div>
+        <nav>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#tienda">Tienda Digital</a></li>
+                <li><a href="#devocional">Devocional 30 Días</a></li>
+                <li><a href="https://wa.me/543424224755?text=Hola%20Fiorella,%20quiero%20consultar%20sobre%20tus%20recursos" class="nav-btn" target="_blank">Contacto</a></li>
+            </ul>
+        </nav>
     </header>
 
     <!-- Hero Section -->
-    <section id="inicio" class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
-        <!-- Background Image with Overlay -->
-        <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=2000&q=80" alt="Atardecer dorado sobre la naturaleza" class="w-full h-full object-cover object-center transform scale-105 animate-pulse" style="animation-duration: 20s;">
-            <div class="absolute inset-0 hero-gradient"></div>
-        </div>
-
-        <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white py-20">
-            <span class="inline-block px-4 py-1.5 rounded-full bg-white/20 backdrop-blur-md text-sky-100 text-xs sm:text-sm font-semibold tracking-wider uppercase mb-6 opacity-0 animate-fade-in-up delay-100">
-                ✨ Descubre tu identidad en Dios
-            </span>
-            <h1 class="font-serif text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight mb-6 leading-tight opacity-0 animate-fade-in-up delay-200">
-                Creados con <span class="text-sunset-500 italic">Propósito</span> Divino
-            </h1>
-            <p class="max-w-2xl mx-auto text-lg sm:text-xl text-earth-100 font-light mb-10 opacity-0 animate-fade-in-up delay-300">
-                Un espacio de inspiración, fe y renovación espiritual guiado por la maravillosa creación de nuestro Señor. Camina cada día fortaleciendo tu relación con Él.
-            </p>
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 opacity-0 animate-fade-in-up delay-400">
-                <a href="#devocionales" class="w-full sm:w-auto px-8 py-4 bg-sunset-500 hover:bg-sunset-600 text-white font-semibold rounded-2xl shadow-lg transition-all duration-300 transform hover:-translate-y-1">
-                    <i class="fa-solid fa-book-open mr-2"></i> Leer Devocional de Hoy
-                </a>
-                <a href="#tienda" class="w-full sm:w-auto px-8 py-4 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/30 font-semibold rounded-2xl shadow-lg transition-all duration-300 transform hover:-translate-y-1">
-                    <i class="fa-solid fa-store mr-2"></i> Ver Recursos Digitales
-                </a>
-            </div>
-        </div>
-
-        <!-- Decorative Wave Divider -->
-        <div class="absolute bottom-0 left-0 right-0 overflow-hidden leading-none z-10">
-            <svg class="relative block w-full h-12 text-earth-50" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V0C95.82,23.59,190.9,46.51,321.39,56.44Z" fill="currentColor"></path>
-            </svg>
+    <section id="inicio" class="hero">
+        <div class="hero-content fade-in">
+            <h2>Creados con Propósito</h2>
+            <p>Espacio de inspiración cristiana, recursos digitales y devocionales para fortalecer tu fe y la de tu familia cada día.</p>
+            <a href="#tienda" class="btn-primary">Ver Recursos Imprimibles</a>
         </div>
     </section>
 
-    <!-- About Me Section -->
-    <section id="sobre-mi" class="py-24 bg-earth-50 relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                <!-- Stock Nature Image Gallery Collage -->
-                <div class="lg:col-span-6 grid grid-cols-2 gap-4">
-                    <div class="space-y-4">
-                        <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=800&q=80" alt="Bosque sereno y naturaleza" class="rounded-3xl shadow-lg object-cover h-64 w-full transform hover:scale-105 transition-transform duration-500">
-                        <img src="https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=800&q=80" alt="Amanecer en las montañas" class="rounded-3xl shadow-lg object-cover h-48 w-full transform hover:scale-105 transition-transform duration-500">
-                    </div>
-                    <div class="space-y-4 pt-8">
-                        <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80" alt="Cumbres y cielos celestiales" class="rounded-3xl shadow-lg object-cover h-48 w-full transform hover:scale-105 transition-transform duration-500">
-                        <img src="https://images.unsplash.com/photo-1518495973542-4542c06a5843?auto=format&fit=crop&w=800&q=80" alt="Flores silvestres y luz solar" class="rounded-3xl shadow-lg object-cover h-64 w-full transform hover:scale-105 transition-transform duration-500">
+    <!-- Tienda Digital -->
+    <section id="tienda">
+        <div class="section-title fade-in">
+            <h2>Tienda de Recursos Imprimibles</h2>
+            <p>Materiales diseñados con amor para descargar e imprimir en casa o la iglesia</p>
+        </div>
+
+        <div class="store-grid">
+            <!-- Producto Estrella -->
+            <div class="store-card fade-in">
+                <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=800&q=80" alt="Devocional Infantil" class="store-img">
+                <div class="store-content">
+                    <span class="badge">Más Vendido / PDF</span>
+                    <h3>Devocional Infantil: "Pequeños Exploradores de la Fe"</h3>
+                    <p>30 días completos de historias bíblicas ilustradas, actividades creativas y manualidades basadas en la naturaleza para niños de 5 a 10 años.</p>
+                    <div class="price-row">
+                        <span class="price">$4.99 USD</span>
+                        <a href="https://wa.me/543424224755?text=Hola%20Fiorella,%20quiero%20adquirir%20el%20Devocional%20Infantil%20Pequeños%20Exploradores%20de%20la%20Fe" class="btn-buy" target="_blank">Adquirir PDF</a>
                     </div>
                 </div>
+            </div>
 
-                <!-- Text Content -->
-                <div class="lg:col-span-6 space-y-6">
-                    <div class="inline-flex items-center space-x-2 px-3 py-1 bg-earth-200/60 rounded-full text-xs font-semibold tracking-wider text-earth-800 uppercase">
-                        <i class="fa-solid fa-heart text-sunset-500"></i>
-                        <span>Conoce a Fiorella Fernández</span>
+            <!-- Producto 2 -->
+            <div class="store-card fade-in">
+                <img src="https://images.unsplash.com/photo-1506880018603-83d5b814b5a6?auto=format&fit=crop&w=800&q=80" alt="Planner Devocional" class="store-img">
+                <div class="store-content">
+                    <span class="badge">E-Book & Planner</span>
+                    <h3>Planner Devocional: "Raíces Firmes"</h3>
+                    <p>Cuaderno de trabajo digital para un año entero de gratitud, reflexión diaria y estudio profundo de las escrituras.</p>
+                    <div class="price-row">
+                        <span class="price">$6.50 USD</span>
+                        <a href="https://wa.me/543424224755?text=Hola%20Fiorella,%20quiero%20adquirir%20el%20Planner%20Devocional%20Raíces%20Firmes" class="btn-buy" target="_blank">Adquirir PDF</a>
                     </div>
-                    <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-earth-900 leading-tight">
-                        Inspirando vidas a través de la fe y la belleza de la creación.
-                    </h2>
-                    <p class="text-earth-700 text-lg leading-relaxed">
-                        ¡Hola! Soy <strong class="text-earth-900 font-semibold">Fiorella Fernández</strong>. Creo firmemente que cada amanecer, cada montaña imponente y cada detalle de la naturaleza nos recuerda el amor inagotable de Dios. Mi propósito es acompañarte a redescubrir tu valor en el creador, proveyendo herramientas prácticas, devocionales y recursos que nutran tu espíritu cada día.
-                    </p>
-                    <div class="grid grid-cols-2 gap-6 pt-4">
-                        <div class="bg-white p-5 rounded-2xl shadow-sm border border-earth-200">
-                            <div class="text-sunset-500 text-2xl font-bold font-serif mb-1">+5 Años</div>
-                            <p class="text-sm text-earth-700">Compartiendo el mensaje de esperanza y fe.</p>
-                        </div>
-                        <div class="bg-white p-5 rounded-2xl shadow-sm border border-earth-200">
-                            <div class="text-sage-600 text-2xl font-bold font-serif mb-1">100%</div>
-                            <p class="text-sm text-earth-700">Dedicada a fortalecer hogares y corazones.</p>
-                        </div>
-                    </div>
-                    <div class="pt-4">
-                        <a href="#contacto" class="inline-flex items-center px-6 py-3 bg-earth-900 hover:bg-sunset-600 text-white rounded-xl font-medium shadow-md transition-all">
-                            <span>Hablemos por WhatsApp</span>
-                            <i class="fa-brands fa-whatsapp ml-2 text-lg"></i>
-                        </a>
+                </div>
+            </div>
+
+            <!-- Producto 3 -->
+            <div class="store-card fade-in">
+                <img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=800&q=80" alt="Tarjetas de Promesas" class="store-img">
+                <div class="store-content">
+                    <span class="badge">Pack Imprimible</span>
+                    <h3>Pack 40 Tarjetas de Promesas y Naturaleza</h3>
+                    <p>Tarjetas imprimibles de alta resolución con versículos bíblicos y paisajes para decorar tu hogar u oficina.</p>
+                    <div class="price-row">
+                        <span class="price">$3.99 USD</span>
+                        <a href="https://wa.me/543424224755?text=Hola%20Fiorella,%20quiero%20adquirir%20el%20Pack%20de%20Tarjetas%20de%20Promesas" class="btn-buy" target="_blank">Adquirir PDF</a>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- Daily Devotional Section -->
-    <section id="devocionales" class="py-24 bg-white relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <span class="text-sunset-600 text-xs font-bold tracking-widest uppercase block mb-3">PAN DE CADA DÍA</span>
-                <h2 class="font-serif text-3xl sm:text-5xl font-bold text-earth-900 mb-4">Devocionales Diarios</h2>
-                <p class="text-earth-700 text-lg">Alimenta tu espíritu con lecturas inspiradas en la creación y la palabra de Dios.</p>
+        <!-- Muestra interactiva del Devocional para Imprimir (Día 1 y 2 listos) -->
+        <div id="devocional" class="printable-preview fade-in">
+            <h3>📖 Vista previa del Material Imprimible (Días 1 y 2)</h3>
+            <p style="text-align:center; color: var(--text-light); margin-bottom: 2rem;">Así es como se ven las páginas listas dentro del cuadernillo descargable que recibirán las familias.</p>
+            
+            <div class="day-box">
+                <h4>☀️ DÍA 1: El cielo cuenta su gloria</h4>
+                <div class="verse">"Los cielos cuentan la gloria de Dios, y el firmamento anuncia la obra de sus manos." — Salmos 19:1</div>
+                <p><strong>Lectura:</strong> ¿Alguna vez miraste el cielo por la noche y viste cuántas estrellas hay? Dios hizo cada una de ellas y les puso nombre. Todo lo que nos rodea nos habla de lo maravilloso que es Él.</p>
+                <p style="margin-top: 1rem;"><strong>Actividad para completar:</strong> Salí un ratito al patio, observá el cielo de hoy y dibujalo en tu cuadernillo.</p>
             </div>
 
-            <!-- Devotional Card Container -->
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-                <!-- Featured Today Devotional -->
-                <div class="lg:col-span-8 bg-earth-50 rounded-3xl p-8 sm:p-12 border border-earth-200 shadow-sm flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center justify-between mb-6">
-                            <span class="px-4 py-1.5 bg-sage-100 text-sage-700 rounded-full text-xs font-semibold uppercase tracking-wider">
-                                <i class="fa-regular fa-calendar-days mr-1.5"></i> Devocional de Hoy
-                            </span>
-                            <span class="text-sm text-earth-700 font-medium" id="fecha-actual">Martes, 29 de Septiembre</span>
-                        </div>
-                        <h3 id="dev-title" class="font-serif text-2xl sm:text-4xl font-bold text-earth-900 mb-4">
-                            En las Alturas de la Roca
-                        </h3>
-                        <blockquote class="bg-white/80 p-6 rounded-2xl border-l-4 border-sunset-500 mb-6 shadow-sm">
-                            <p id="dev-verse" class="italic text-earth-800 font-serif text-lg mb-2">
-                                "Él hace mis pies como de cierva, y me hace estar firme sobre mis alturas."
-                            </p>
-                            <cite id="dev-ref" class="block text-right text-xs font-bold text-sunset-600 uppercase tracking-wider">— Salmos 18:33</cite>
-                        </blockquote>
-                        <div id="dev-body" class="text-earth-700 space-y-4 leading-relaxed">
-                            <p>Cuando observamos a los animales en la naturaleza, como la cierva escalando terrenos escarpados con total seguridad, comprendemos que Dios nos ha provisto de la fortaleza necesaria para superar cualquier obstáculo.</p>
-                            <p>Quizás hoy sientas que el camino es empinado o resbaladizo. Recuerda que no dependes de tus propias fuerzas, sino de Aquel que sostiene tus pasos y te guía a lugares seguros. Confía en su diseño perfecto para tu vida.</p>
-                        </div>
-                    </div>
-                    <div class="mt-8 pt-6 border-t border-earth-200 flex items-center justify-between">
-                        <span class="text-xs text-earth-700 font-medium"><i class="fa-solid fa-clock mr-1"></i> Tiempo de lectura: 3 min</span>
-                        <button onclick="compartirDevocional()" class="px-5 py-2.5 bg-earth-900 text-white rounded-xl text-sm font-semibold hover:bg-sunset-600 transition-colors">
-                            <i class="fa-solid fa-share-nodes mr-2"></i> Compartir Reflexión
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Previous/Archived Devotionals Sidebar -->
-                <div class="lg:col-span-4 flex flex-col space-y-4">
-                    <h3 class="font-serif text-xl font-bold text-earth-900 mb-2">Devocionales Anteriores</h3>
-                    
-                    <div onclick="cargarDevocional(1)" class="bg-earth-50 p-5 rounded-2xl border border-earth-200 hover:border-sunset-500 cursor-pointer transition-all group shadow-sm">
-                        <span class="text-xs text-sunset-600 font-bold uppercase tracking-wider">Ayer</span>
-                        <h4 class="font-serif font-bold text-earth-900 text-lg group-hover:text-sunset-600 transition-colors mt-1">El Silencio del Atardecer</h4>
-                        <p class="text-sm text-earth-700 line-clamp-2 mt-1">En medio del ruido diario, Dios nos invita a calmar el alma y contemplar su gloria...</p>
-                    </div>
-
-                    <div onclick="cargarDevocional(2)" class="bg-earth-50 p-5 rounded-2xl border border-earth-200 hover:border-sunset-500 cursor-pointer transition-all group shadow-sm">
-                        <span class="text-xs text-sunset-600 font-bold uppercase tracking-wider">Hace 2 días</span>
-                        <h4 class="font-serif font-bold text-earth-900 text-lg group-hover:text-sunset-600 transition-colors mt-1">Raíces Profundas en la Tierra</h4>
-                        <p class="text-sm text-earth-700 line-clamp-2 mt-1">Así como los grandes árboles extienden sus raíces hacia fuentes ocultas de agua...</p>
-                    </div>
-
-                    <div onclick="cargarDevocional(3)" class="bg-earth-50 p-5 rounded-2xl border border-earth-200 hover:border-sunset-500 cursor-pointer transition-all group shadow-sm">
-                        <span class="text-xs text-sunset-600 font-bold uppercase tracking-wider">Hace 3 días</span>
-                        <h4 class="font-serif font-bold text-earth-900 text-lg group-hover:text-sunset-600 transition-colors mt-1">Luz en Medio de la Tormenta</h4>
-                        <p class="text-sm text-earth-700 line-clamp-2 mt-1">Los cielos nublados no pueden apagar permanentemente el sol que Dios ha dispuesto...</p>
-                    </div>
-                </div>
+            <div class="day-box">
+                <h4>🌱 DÍA 2: Pequeñas semillas, grandes milagros</h4>
+                <div class="verse">"Si tuvieran fe como un grano de mostaza..." — Mateo 17:20</div>
+                <p><strong>Lectura:</strong> Una semilla es tan chiquitita que casi no se ve. Sin embargo, cuando se planta en la tierra y recibe agua y sol, se convierte en un árbol gigante. Dios pone grandes sueños en tu corazón que crecen de la misma manera.</p>
+                <p style="margin-top: 1rem;"><strong>Actividad para completar:</strong> ¡Vamos a germinar! Poné una lenteja sobre un algodón húmedo en un vasito y dibujá cómo imaginas que crecerá.</p>
+            </div>
+            
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="https://wa.me/543424224755?text=Hola%20Fiorella,%20quiero%20comprar%20el%20devocional%20completo%20de%2030%20días" class="btn-primary" target="_blank">Obtener los 30 días completos para imprimir</a>
             </div>
         </div>
     </section>
 
-    <!-- Interactive Testimonies Section -->
-    <section id="testimonios" class="py-24 bg-earth-100 relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <span class="text-sage-700 text-xs font-bold tracking-widest uppercase block mb-3">HISTORIAS DE FE</span>
-                <h2 class="font-serif text-3xl sm:text-5xl font-bold text-earth-900 mb-4">Muro de Testimonios</h2>
-                <p class="text-earth-700 text-lg">¿Cómo ha obrado Dios en tu vida? Comparte tu testimonio y edifica a nuestra comunidad en tiempo real.</p>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-                <!-- Testimonies Form -->
-                <div class="lg:col-span-5 bg-white p-8 sm:p-10 rounded-3xl shadow-lg border border-earth-200 sticky top-28">
-                    <h3 class="font-serif text-2xl font-bold text-earth-900 mb-6 flex items-center">
-                        <i class="fa-solid fa-pen-nib text-sunset-500 mr-3"></i> Publica tu Testimonio
-                    </h3>
-                    <form id="testimony-form" onsubmit="publicarTestimonio(event)" class="space-y-5">
-                        <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-earth-800 mb-2">Tu Nombre o Anónimo</label>
-                            <input type="text" id="nombre-input" required placeholder="Ej. María G. o Anónimo" class="w-full px-4 py-3 bg-earth-50 border border-earth-200 rounded-xl focus:outline-none focus:border-sunset-500 text-earth-900 font-medium transition-colors">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-earth-800 mb-2">Ciudad / País</label>
-                            <input type="text" id="ubicacion-input" required placeholder="Ej. Santa Fe, Argentina" class="w-full px-4 py-3 bg-earth-50 border border-earth-200 rounded-xl focus:outline-none focus:border-sunset-500 text-earth-900 font-medium transition-colors">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-earth-800 mb-2">Tu Testimonio / Motivo de Gratitud</label>
-                            <textarea id="mensaje-input" required rows="4" placeholder="Comparte cómo Dios te ha bendecido o una palabra de aliento..." class="w-full px-4 py-3 bg-earth-50 border border-earth-200 rounded-xl focus:outline-none focus:border-sunset-500 text-earth-900 font-medium transition-colors resize-none"></textarea>
-                        </div>
-                        <button type="submit" class="w-full py-4 bg-sunset-500 hover:bg-sunset-600 text-white font-bold rounded-xl shadow-md transition-all duration-300 flex items-center justify-center space-x-2">
-                            <i class="fa-solid fa-paper-plane"></i>
-                            <span>Publicar Testimonio</span>
-                        </button>
-                    </form>
-                </div>
-
-                <!-- Testimonies Live Feed Grid -->
-                <div class="lg:col-span-7">
-                    <div id="testimonios-container" class="space-y-6">
-                        <!-- Dynamic Testimony Item 1 -->
-                        <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-sm border border-earth-200 transition-all hover:shadow-md">
-                            <div class="flex items-center justify-between mb-4">
-                                <div class="flex items-center space-x-3">
-                                    <div class="w-12 h-12 rounded-full bg-sage-500 text-white font-bold flex items-center justify-center text-lg font-serif">CS</div>
-                                    <div>
-                                        <h4 class="font-serif font-bold text-earth-900 text-lg">Carolina Sánchez</h4>
-                                        <span class="text-xs text-earth-700">Santa Fe, Argentina</span>
-                                    </div>
-                                </div>
-                                <span class="text-xs bg-sage-100 text-sage-700 px-3 py-1 rounded-full font-semibold">Verificado</span>
-                            </div>
-                            <p class="text-earth-700 leading-relaxed italic">
-                                "El devocional de esta semana llegó justo en el momento en que más necesitaba paz en mi hogar. Gracias Fiorella por este hermoso espacio que nos conecta con el amor de Dios a través de su creación."
-                            </p>
-                            <div class="mt-4 pt-4 border-t border-earth-100 flex items-center justify-between text-xs text-earth-700">
-                                <span><i class="fa-regular fa-clock mr-1"></i> Hace 2 horas</span>
-                                <button onclick="darLike(this)" class="text-sunset-500 hover:text-sunset-600 font-semibold flex items-center space-x-1">
-                                    <i class="fa-solid fa-heart"></i> <span class="like-count">14</span>
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- Dynamic Testimony Item 2 -->
-                        <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-sm border border-earth-200 transition-all hover:shadow-md">
-                            <div class="flex items-center justify-between mb-4">
-                                <div class="flex items-center space-x-3">
-                                    <div class="w-12 h-12 rounded-full bg-sky-500 text-white font-bold flex items-center justify-center text-lg font-serif">MG</div>
-                                    <div>
-                                        <h4 class="font-serif font-bold text-earth-900 text-lg">Mateo Gómez</h4>
-                                        <span class="text-xs text-earth-700">Paraná, Argentina</span>
-                                    </div>
-                                </div>
-                                <span class="text-xs bg-sage-100 text-sage-700 px-3 py-1 rounded-full font-semibold">Verificado</span>
-                            </div>
-                            <p class="text-earth-700 leading-relaxed italic">
-                                "Los devocionales para imprimir con mis hijos han sido una bendición enorme en nuestras tardes en familia. ¡Super recomendados todos los recursos de la tienda digital!"
-                            </p>
-                            <div class="mt-4 pt-4 border-t border-earth-100 flex items-center justify-between text-xs text-earth-700">
-                                <span><i class="fa-regular fa-clock mr-1"></i> Ayer</span>
-                                <button onclick="darLike(this)" class="text-sunset-500 hover:text-sunset-600 font-semibold flex items-center space-x-1">
-                                    <i class="fa-solid fa-heart"></i> <span class="like-count">29</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <!-- Footer con movimiento cristiano -->
+    <footer>
+        <div class="ticker-wrap">
+            <div class="ticker">
+                <span class="ticker-item">✨ Todo lo puedo en Cristo que me fortalece (Filipenses 4:13)</span>
+                <span class="ticker-item">🌿 Creados con Propósito por Fiorella Fernández</span>
+                <span class="ticker-item">💡 Lámpara es a mis pies tu palabra, y lumbrera a mi camino (Salmos 119:105)</span>
+                <span class="ticker-item">✨ Todo lo puedo en Cristo que me fortalece (Filipenses 4:13)</span>
+                <span class="ticker-item">🌿 Creados con Propósito por Fiorella Fernández</span>
             </div>
         </div>
-    </section>
-
-    <!-- Digital Store Section -->
-    <section id="tienda" class="py-24 bg-white relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <span class="text-sunset-600 text-xs font-bold tracking-widest uppercase block mb-3">RECURSOS PARA CRECER</span>
-                <h2 class="font-serif text-3xl sm:text-5xl font-bold text-earth-900 mb-4">Tienda Digital</h2>
-                <p class="text-earth-700 text-lg">Devocionales infantiles para imprimir, guías de estudio bíblico y material inspirador para tu hogar.</p>
-            </div>
-
-            <!-- Products Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Product 1 -->
-                <div class="bg-earth-50 rounded-3xl overflow-hidden border border-earth-200 shadow-sm flex flex-col justify-between group transition-all hover:shadow-xl">
-                    <div class="relative h-64 overflow-hidden bg-earth-200">
-                        <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=800&q=80" alt="Devocional Infantil Creando con Dios" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                        <span class="absolute top-4 left-4 bg-sunset-500 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Más Vendido</span>
-                    </div>
-                    <div class="p-6 sm:p-8 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="flex items-center justify-between mb-2">
-                                <span class="text-xs font-semibold text-sage-700 uppercase tracking-wider">PDF para Imprimir</span>
-                                <div class="text-sunset-600 font-bold text-lg">$4.99 USD</div>
-                            </div>
-                            <h3 class="font-serif text-xl font-bold text-earth-900 mb-2">Devocional Infantil: "Pequeños Exploradores de la Fe"</h3>
-                            <p class="text-earth-700 text-sm mb-6">30 días de historias bíblicas ilustradas, manualidades y actividades basadas en la naturaleza para niños de 5 a 10 años.</p>
-                        </div>
-                        <button onclick="comprarProducto('Devocional Infantil Pequeños Exploradores', '$4.99 USD')" class="w-full py-3.5 bg-earth-900 group-hover:bg-sunset-600 text-white font-semibold rounded-xl shadow transition-colors flex items-center justify-center space-x-2">
-                            <i class="fa-solid fa-cart-shopping"></i>
-                            <span>Adquirir Recurso</span>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Product 2 -->
-                <div class="bg-earth-50 rounded-3xl overflow-hidden border border-earth-200 shadow-sm flex flex-col justify-between group transition-all hover:shadow-xl">
-                    <div class="relative h-64 overflow-hidden bg-earth-200">
-                        <img src="https://images.unsplash.com/photo-1506880018603-83d5b814b5a6?auto=format&fit=crop&w=800&q=80" alt="Guía de Estudio Bíblico" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                        <span class="absolute top-4 left-4 bg-sky-500 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Nuevo Lanzamiento</span>
-                    </div>
-                    <div class="p-6 sm:p-8 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="flex items-center justify-between mb-2">
-                                <span class="text-xs font-semibold text-sage-700 uppercase tracking-wider">E-Book & Planner</span>
-                                <div class="text-sunset-600 font-bold text-lg">$6.50 USD</div>
-                            </div>
-                            <h3 class="font-serif text-xl font-bold text-earth-900 mb-2">Planner Devocional: "Raíces Firmes"</h3>
-                            <p class="text-earth-700 text-sm mb-6">Cuaderno de trabajo digital para un año entero de gratitud, reflexión diaria y estudio profundo de las escrituras.</p>
-                        </div>
-                        <button onclick="comprarProducto('Planner Devocional Raíces Firmes', '$6.50 USD')" class="w-full py-3.5 bg-earth-900 group-hover:bg-sunset-600 text-white font-semibold rounded-xl shadow transition-colors flex items-center justify-center space-x-2">
-                            <i class="fa-solid fa-cart-shopping"></i>
-                            <span>Adquirir Recurso</span>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Product 3 -->
-                <div class="bg-earth-50 rounded-3xl overflow-hidden border border-earth-200 shadow-sm flex flex-col justify-between group transition-all hover:shadow-xl">
-                    <div class="relative h-64 overflow-hidden bg-earth-200">
-                        <img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=800&q=80" alt="Tarjetas con Versículos Bíblicos" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                        <span class="absolute top-4 left-4 bg-sage-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Pack Imprimible</span>
-                    </div>
-                    <div class="p-6 sm:p-8 flex-1 flex flex-col justify-between">
-                        <div>
-                            <div class="flex items-center justify-between mb-2">
-                                <span class="text-xs font-semibold text-sage-700 uppercase tracking-wider">Arte Decorativo PDF</span>
-                                <div class="text-sunset-600 font-bold text-lg">$3.99 USD</div>
-                            </div>
-                            <h3 class="font-serif text-xl font-bold text-earth-900 mb-2">Pack 40 Tarjetas de Promesas y Naturaleza</h3>
-                            <p class="text-earth-700 text-sm mb-6">Tarjetas imprimibles de alta resolución con versículos bíblicos y paisajes de la creación para decorar tu hogar u oficina.</p>
-                        </div>
-                        <button onclick="comprarProducto('Pack 40 Tarjetas de Promesas', '$3.99 USD')" class="w-full py-3.5 bg-earth-900 group-hover:bg-sunset-600 text-white font-semibold rounded-xl shadow transition-colors flex items-center justify-center space-x-2">
-                            <i class="fa-solid fa-cart-shopping"></i>
-                            <span>Adquirir Recurso</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
+        <div class="footer-content">
+            <h3 class="serif-font" style="font-size: 1.5rem; margin-bottom: 0.5rem;">Creados con Propósito</h3>
+            <p>Llevando mensajes de fe, esperanza y recursos prácticos a cada hogar.</p>
+            <p style="font-size: 0.85rem; color: rgba(255,255,255,0.6); margin-top: 2rem;">© 2026 Fiorella Fernández. Todos los derechos reservados.</p>
         </div>
-    </section>
+    </footer>
 
-    <!-- Contact & Footer Section -->
-    <section id="contacto" class="py-24 bg-earth-900 text-white relative overflow-hidden">
-        <div class="absolute inset-0 opacity-10 pointer-events-none">
-            <img src="https://images.unsplash.com/photo-1426604966848-d7adacbd02bff?auto=format&fit=crop&w=2000&q=80" alt="Fondo naturaleza" class="w-full h-full object-cover">
-        </div>
-
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-16">
-                <div class="lg:col-span-7 space-y-6">
-                    <span class="text-sunset-500 text-xs font-bold tracking-widest uppercase block">¿Hablamos?</span>
-                    <h2 class="font-serif text-3xl sm:text-5xl font-bold leading-tight">
-                        Conectemos y caminemos juntos en la fe.
-                    </h2>
-                    <p class="text-earth-200 text-lg leading-relaxed">
-                        Si tienes peticiones de oración, dudas sobre los devocionales o deseas más información sobre los recursos digitales, escríbeme directamente por WhatsApp. ¡Estaré encantada de saludarte!
-                    </p>
-                    <div class="pt-2">
-                        <a href="https://wa.me/543424224755?text=Hola%20Fiorella,%20me%20gustaría%20recibir%20más%20información%20sobre%20los%20devocionales%20y%20recursos." target="_blank" class="inline-flex items-center px-8 py-4 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-2xl shadow-xl transition-all transform hover:-translate-y-1">
-                            <i class="fa-brands fa-whatsapp text-2xl mr-3"></i>
-                            <span>Escribir por WhatsApp (+54 342 422-4755)</span>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="lg:col-span-5 bg-white/10 backdrop-blur-md p-8 sm:p-10 rounded-3xl border border-white/20">
-                    <h3 class="font-serif text-2xl font-bold mb-6">Redes y Ministerio</h3>
-                    <div class="space-y-4">
-                        <a href="https://instagram.com" target="_blank" class="flex items-center space-x-4 p-4 rounded-2xl bg-white/5 hover:bg-white/10 transition-colors">
-                            <div class="w-12 h-12 rounded-xl bg-sunset-500 flex items-center justify-center text-xl text-white">
-                                <i class="fa-brands fa-instagram"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-lg">Instagram</h4>
-                                <p class="text-xs text-earth-200">@creadosconproposito.fiorela</p>
-                            </div>
-                        </a>
-                        <a href="https://facebook.com" target="_blank" class="flex items-center space-x-4 p-4 rounded-2xl bg-white/5 hover:bg-white/10 transition-colors">
-                            <div class="w-12 h-12 rounded-xl bg-sky-500 flex items-center justify-center text-xl text-white">
-                                <i class="fa-brands fa-facebook-f"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-lg">Facebook</h4>
-                                <p class="text-xs text-earth-200">Creados con Propósito - Fiorella Fernández</p>
-                            </div>
-                        </a>
-                        <a href="mailto:contacto@creadosconproposito.com" class="flex items-center space-x-4 p-4 rounded-2xl bg-white/5 hover:bg-white/10 transition-colors">
-                            <div class="w-12 h-12 rounded-xl bg-sage-600 flex items-center justify-center text-xl text-white">
-                                <i class="fa-regular fa-envelope"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-lg">Correo Electrónico</h4>
-                                <p class="text-xs text-earth-200">contacto@creadosconproposito.com</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Dynamic Moving Footer Ticker -->
-            <div class="border-t border-earth-800 pt-10 overflow-hidden">
-                <div class="relative w-full overflow-hidden whitespace-nowrap py-3 bg-earth-800/50 rounded-2xl mb-8 border border-earth-700/50">
-                    <div class="inline-flex space-x-12 animate-ticker text-sunset-500 font-serif font-medium text-lg">
-                        <span>✨ "Porque yo sé los pensamientos que tengo acerca de vosotros, dice Jehová, pensamientos de paz, y no de mal, para daros el fin que esperáis." (Jeremías 29:11)</span>
-                        <span>🌿 Cada amanecer es una nueva oportunidad para agradecer la obra maravillosa de Dios en nuestras vidas.</span>
-                        <span>🕊️ "Lámpara es a mis pies tu palabra, y lumbrera a mi camino." (Salmos 119:105)</span>
-                        <span>☀️ Fuiste diseñado con un propósito eterno y único en el corazón del Padre.</span>
-                    </div>
-                </div>
-
-                <div class="flex flex-col md:flex-row items-center justify-between text-sm text-earth-300">
-                    <p>© 2026 Creados con Propósito — Fiorella Fernández. Todos los derechos reservados.</p>
-                    <p class="mt-4 md:mt-0 font-medium text-earth-200">Diseñado con fe, amor y devoción cristiana 🌿</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Floating WhatsApp Direct Contact Button -->
-    <a href="https://wa.me/543424224755?text=Hola%20Fiorella,%20me%20gustaría%20contactarte%20desde%20tu%20sitio%20web." target="_blank" class="fixed bottom-6 right-6 z-50 w-16 h-16 bg-emerald-600 hover:bg-emerald-500 text-white rounded-full shadow-2xl flex items-center justify-center text-3xl transition-all duration-300 transform hover:scale-110 animate-pulse-glow" aria-label="Contacto por WhatsApp">
+    <!-- Botón Flotante WhatsApp -->
+    <a href="https://wa.me/543424224755?text=Hola%20Fiorella,%20vengo%20de%20tu%20web%20Creados%20con%20Propósito" class="whatsapp-float" target="_blank" title="Escribinos por WhatsApp">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 
-    <!-- Custom Notification Toast -->
-    <div id="toast" class="fixed top-24 right-6 z-50 transform translate-x-full opacity-0 transition-all duration-500 bg-earth-900 text-white px-6 py-4 rounded-2xl shadow-2xl border border-sunset-500 flex items-center space-x-3">
-        <i id="toast-icon" class="fa-solid fa-circle-check text-sunset-500 text-xl"></i>
-        <div>
-            <h4 id="toast-title" class="font-bold text-sm">¡Éxito!</h4>
-            <p id="toast-message" class="text-xs text-earth-200">Acción realizada correctamente.</p>
-        </div>
-    </div>
-
-    <!-- JavaScript Interactivity -->
+    <!-- Script de Animaciones -->
     <script>
-        // Mobile menu toggle
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
+        document.addEventListener("DOMContentLoaded", function() {
+            const faders = document.querySelectorAll('.fade-in');
+            const appearOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+            const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+                entries.reverse().forEach(entry => {
+                    if (!entry.isIntersecting) return;
+                    entry.target.classList.add('appear');
+                    observer.unobserve(entry.target);
+                });
+            }, appearOptions);
 
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
+            faders.forEach(fader => { appearOnScroll.observe(fader); });
         });
-
-        // Close mobile menu on click link
-        mobileMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-            });
-        });
-
-        // Date setter
-        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-        document.getElementById('fecha-actual').innerText = new Date().toLocaleDateString('es-ES', options);
-
-        // Devotionals database mock
-        const devocionalesData = {
-            1: {
-                title: "El Silencio del Atardecer",
-                verse: "«Estad quietos, y conoced que yo soy Dios.»",
-                ref: "— Salmos 46:10",
-                body: "<p>En medio del ruido diario, Dios nos invita a calmar el alma y contemplar su gloria reflejada en los colores del atardecer. Es en el silencio donde su voz se vuelve más clara.</p><p>Dedica unos minutos hoy para apagar las distracciones y permitir que su paz inunde cada rincón de tu corazón.</p>"
-            },
-            2: {
-                title: "Raíces Profundas en la Tierra",
-                verse: "«Será como árbol plantado junto a corrientes de aguas, que da su fruto en su tiempo...»",
-                ref: "— Salmos 1:3",
-                body: "<p>Así como los grandes árboles extienden sus raíces hacia fuentes ocultas de agua para mantenerse firmes en temporadas de sequía, nuestra fe necesita profundizar cada día en la palabra de Dios.</p><p>No te desanimes por las tormentas; ellas solo sirven para obligarte a echar raíces más profundas en Él.</p>"
-            },
-            3: {
-                title: "Luz en Medio de la Tormenta",
-                verse: "«Aunque camine por cañerías oscuras, no temeré mal alguno, porque tú estarás conmigo.»",
-                ref: "— Salmos 23:4",
-                body: "<p>Los cielos nublados y las pruebas temporales nunca pueden apagar permanentemente el sol que Dios ha dispuesto en lo alto. Su luz siempre encuentra la manera de iluminar nuestro sendero.</p><p>Camina con confianza sabiendo que Su mano te sostiene en todo momento.</p>"
-            }
-        };
-
-        function cargarDevocional(id) {
-            const dev = devocionalesData[id];
-            if(dev) {
-                document.getElementById('dev-title').innerText = dev.title;
-                document.getElementById('dev-verse').innerText = dev.verse;
-                document.getElementById('dev-ref').innerText = dev.ref;
-                document.getElementById('dev-body').innerHTML = dev.body;
-                showToast("Devocional cargado", "Disfruta de esta hermosa lectura inspiradora.");
-            }
-        }
-
-        function compartirDevocional() {
-            if (navigator.share) {
-                navigator.share({
-                    title: 'Devocional - Creados con Propósito',
-                    text: 'Te comparto este hermoso devocional de Fiorella Fernández.',
-                    url: window.location.href,
-                }).catch(() => {});
-            } else {
-                showToast("Enlace copiado", "El enlace se ha preparado para compartir.");
-            }
-        }
-
-        // Testimonies publication real-time
-        function publicarTestimonio(e) {
-            e.preventDefault();
-            const nombre = document.getElementById('nombre-input').value;
-            const ubicacion = document.getElementById('ubicacion-input').value;
-            const mensaje = document.getElementById('mensaje-input').value;
-
-            // Get initials
-            const initials = nombre.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase() || 'CF';
-
-            const container = document.getElementById('testimonios-container');
-            const newItem = document.createElement('div');
-            newItem.className = 'bg-white p-6 sm:p-8 rounded-3xl shadow-sm border border-earth-200 transition-all hover:shadow-md animate-fade-in-up';
-            newItem.innerHTML = `
-                <div class="flex items-center justify-between mb-4">
-                    <div class="flex items-center space-x-3">
-                        <div class="w-12 h-12 rounded-full bg-sunset-500 text-white font-bold flex items-center justify-center text-lg font-serif">${initials}</div>
-                        <div>
-                            <h4 class="font-serif font-bold text-earth-900 text-lg">${escapeHtml(nombre)}</h4>
-                            <span class="text-xs text-earth-700">${escapeHtml(ubicacion)}</span>
-                        </div>
-                    </div>
-                    <span class="text-xs bg-sage-100 text-sage-700 px-3 py-1 rounded-full font-semibold">Nuevo</span>
-                </div>
-                <p class="text-earth-700 leading-relaxed italic">
-                    "${escapeHtml(mensaje)}"
-                </p>
-                <div class="mt-4 pt-4 border-t border-earth-100 flex items-center justify-between text-xs text-earth-700">
-                    <span><i class="fa-regular fa-clock mr-1"></i> Justo ahora</span>
-                    <button onclick="darLike(this)" class="text-sunset-500 hover:text-sunset-600 font-semibold flex items-center space-x-1">
-                        <i class="fa-solid fa-heart"></i> <span class="like-count">1</span>
-                    </button>
-                </div>
-            `;
-
-            container.insertBefore(newItem, container.firstChild);
-            document.getElementById('testimony-form').reset();
-            showToast("¡Testimonio publicado!", "Gracias por compartir tu experiencia y glorificar a Dios.");
-        }
-
-        function darLike(btn) {
-            const countSpan = btn.querySelector('.like-count');
-            let count = parseInt(countSpan.innerText);
-            countSpan.innerText = count + 1;
-            btn.classList.add('scale-125');
-            setTimeout(() => btn.classList.remove('scale-125'), 200);
-            showToast("¡Bendición registrada!", "Gracias por animar esta publicación.");
-        }
-
-        function comprarProducto(producto, precio) {
-            const textoWhatsApp = encodeURIComponent(`Hola Fiorella, quiero adquirir el recurso digital "${producto}" por ${precio}. ¿Cómo puedo proceder con el pago?`);
-            window.open(`https://wa.me/543424224755?text=${textoWhatsApp}`, '_blank');
-        }
-
-        function showToast(title, message) {
-            const toast = document.getElementById('toast');
-            document.getElementById('toast-title').innerText = title;
-            document.getElementById('toast-message').innerText = message;
-            
-            toast.classList.remove('translate-x-full', 'opacity-0');
-            setTimeout(() => {
-                toast.classList.add('translate-x-full', 'opacity-0');
-            }, 4000);
-        }
-
-        function escapeHtml(text) {
-            const map = {
-                '&': '&amp;',
-                '<': '&lt;',
-                '>': '&gt;',
-                '"': '&quot;',
-                "'": '&#039;'
-            };
-            return text.replace(/[&<>"']/g, function(m) { return map[m]; });
-        }
     </script>
 </body>
 </html>
